@@ -158,8 +158,21 @@ public class DirectedMultiGraphTest extends TestCase {
       System.out.println("Connected component: " + cc);
     }
     assertEquals(ccs.size(), 4);
-    assertEquals(CollectionUtils.sorted(ccs.get(0)),
-                 Arrays.asList(1, 2, 3, 4));
+    
+    Set<Set<Integer>> s = new HashSet<>();
+    Set<Integer> tmp = new HashSet<>(Arrays.asList(8));
+    s.add(tmp);
+    tmp = new HashSet<>(Arrays.asList(1,2,3,4));
+    s.add(tmp);
+    tmp = new HashSet<>(Arrays.asList(5,6,7));
+    s.add(tmp);
+    tmp = new HashSet<>(Arrays.asList(9,10));
+    s.add(tmp);
+
+    for (Set<Integer> cc : ccs){
+        assertTrue(s.contains(cc));
+    }
+
   }
 
   public void testEdgesNodes() {
